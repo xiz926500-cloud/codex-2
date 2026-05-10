@@ -1,0 +1,93 @@
+name: CodeQL
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "24 2 * * 1"
+
+permissions:
+  security-events: write
+  packages: read
+  actions: read
+  contents: read
+
+jobs:
+  detect-codeql-languages:
+    name: Detect CodeQL languages
+    runs-on: ubuntu-latest
+    outputs:
+      languages: ${{ steps.detect.outputs.languages }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Detect supported source files
+        id: detect
+        shell: pwsh
+        run: |
+          $ignored = @(
+              "/.git/",
+              "/node_modules/",
+              "/dist/",
+              "/build/",
+              "/coverage/",
+              "/.next/",
+              "/.vite/",
+              "/.venv/",
+              "/venv/"
+          )
+
+          function Test-IgnoredPath {
+              param([string]$Path)
+
+              $normalized = "/" + ($Path -replace "\\", "/")
+              foreach ($segment in $ignored) {
+                  if ($normalized.Contains($segment)) {
+                      return $true
+                  }
+              }
+
+              return $false
+          }
+
+          $files = Get-ChildItem -Recurse -File | Where-Object {
+              -not (Test-IgnoredPath $_.FullName)
+          }
+
+          $languages = New-Object System.Collections.Generic.List[string]
+          if ($files | Where-Object { $_.Extension -in ".js", ".jsx", ".mjs", ".cjs", ".ts", ".tsx" }) {
+              $languages.Add("javascript-typescript")
+          }
+          if ($files | Where-Object { $_.Extension -eq ".py" }) {
+              $languages.Add("python")
+          }
+
+          $json = "[" + (($languages | ForEach-Object { '"' + $_ + '"' }) -join ",") + "]"
+          "languages=$json" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    needs: detect-codeql-languages
+    if: needs.detect-codeql-languages.outputs.languages != '[]'
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ${{ fromJson(needs.detect-codeql-languages.outputs.languages) }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4

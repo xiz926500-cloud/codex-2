@@ -16,6 +16,12 @@ Run the repository health check before opening a pull request:
 .\scripts\verify.ps1
 ```
 
+Run the lightweight secret scan before committing sensitive changes:
+
+```powershell
+.\scripts\secret-scan.ps1
+```
+
 For application projects, add the project-specific checks below and keep them current:
 
 ```powershell

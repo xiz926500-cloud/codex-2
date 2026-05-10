@@ -42,11 +42,17 @@ Assert-File ".gitignore"
 Assert-File ".env.example"
 Assert-File ".github\pull_request_template.md"
 Assert-File ".github\ISSUE_TEMPLATE\bug_report.md"
+Assert-File ".github\dependabot.yml"
 Assert-File ".github\workflows\ci.yml"
+Assert-File ".github\workflows\codeql.yml"
+Assert-File ".github\workflows\dependency-review.yml"
 Assert-File "docs\CODEX_WORKFLOW.md"
 Assert-File "docs\ENGINEERING_STANDARDS.md"
 Assert-File "docs\DELIVERY_CHECKLIST.md"
+Assert-File "docs\SECURITY_BASELINE.md"
+Assert-File "SECURITY.md"
 Assert-File "scripts\codex-check.ps1"
+Assert-File "scripts\secret-scan.ps1"
 Assert-File "scripts\verify.ps1"
 Assert-Directory ".github"
 Assert-Directory "docs"
@@ -60,5 +66,8 @@ git diff --check
 if ($LASTEXITCODE -ne 0) {
     throw "git diff --check failed"
 }
+
+Write-Host "Checking for obvious secret patterns..."
+& ".\scripts\secret-scan.ps1"
 
 Write-Host "Repository verification passed."

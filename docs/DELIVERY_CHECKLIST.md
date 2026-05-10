@@ -19,6 +19,7 @@ Use this checklist before a change is considered ready.
 ## Verification
 
 - [ ] `.\scripts\verify.ps1`
+- [ ] `.\scripts\secret-scan.ps1`
 - [ ] Project lint command, if available
 - [ ] Project build command, if available
 - [ ] Project test command, if available
