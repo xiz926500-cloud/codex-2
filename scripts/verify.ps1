@@ -35,6 +35,7 @@ function Assert-ReadmeLinks {
 
 Write-Host "Checking required project files..."
 Assert-File "README.md"
+Assert-File "AGENTS.md"
 Assert-File ".editorconfig"
 Assert-File ".gitattributes"
 Assert-File ".gitignore"
