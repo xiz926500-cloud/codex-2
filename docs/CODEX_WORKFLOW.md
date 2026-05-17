@@ -31,6 +31,18 @@ npm.cmd run build
 python -m py_compile path\to\file.py
 ```
 
+For this repository:
+
+```powershell
+cd frontend
+npm.cmd run lint
+npm.cmd run build
+
+cd ..\backend
+python -m ruff check .
+python -m pytest
+```
+
 Run repository quick checks:
 
 ```powershell

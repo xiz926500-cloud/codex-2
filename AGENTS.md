@@ -50,6 +50,13 @@ python -m py_compile path\to\file.py
 - Use Linear issues and Notion docs as source context when available.
 - Update task status or comments when implementation reaches a meaningful checkpoint.
 
+## Current Stack
+
+- Frontend lives in `frontend` and uses React, TypeScript, Vite, and ESLint.
+- Backend lives in `backend` and uses FastAPI, Pytest, and Ruff.
+- Local integration services are defined in `docker-compose.yml` for PostgreSQL and Redis.
+- CI should run repository verification, frontend lint/build, backend lint/test, dependency review, and CodeQL when supported source files exist.
+
 ## Safety
 
 - Never commit real credentials, tokens, private keys, database dumps, or machine-specific secrets.
