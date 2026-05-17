@@ -20,9 +20,8 @@ Use this checklist before a change is considered ready.
 
 - [ ] `.\scripts\verify.ps1`
 - [ ] `.\scripts\secret-scan.ps1`
-- [ ] Project lint command, if available
-- [ ] Project build command, if available
-- [ ] Project test command, if available
+- [ ] `cd frontend; npm.cmd run lint; npm.cmd run build`
+- [ ] `cd backend; python -m ruff check .; python -m pytest`
 - [ ] Manual smoke test, if needed
 
 ## PR
