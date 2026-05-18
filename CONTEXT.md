@@ -45,6 +45,15 @@ The minimum expected project structure, workflow documentation, security
 configuration, and verification scripts for this repo.
 _Avoid_: optional polish
 
+**Bootstrap**:
+The repeatable setup path that turns a fresh checkout into a verified local
+development environment.
+_Avoid_: manual setup memory
+
+**Project Template**:
+The reusable scaffold produced from this repository for a new project.
+_Avoid_: copied working directory
+
 **Delivery Evidence**:
 The commands, CI checks, PR links, risk notes, and rollback notes that prove a
 task was completed responsibly.
@@ -63,6 +72,10 @@ _Avoid_: model upgrade, plugin magic
 - A **Business Rule** should map to at least one **Acceptance Case** when it is
   risky or user-visible.
 - An **ADR** explains durable choices that are not obvious from the code.
+- A **Bootstrap** proves the **Repository Baseline** can be recreated on a new
+  machine.
+- A **Project Template** starts from tracked files and must not include local
+  secrets or generated machine state.
 - **Delivery Evidence** proves that the **Repository Baseline** still holds
   after a **Task** is completed.
 - An **Agent Skill** improves execution style, but does not replace **Delivery

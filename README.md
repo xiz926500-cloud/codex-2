@@ -17,6 +17,7 @@ Initialized by Codex on 2026-05-11.
 - Workflow guide: [`docs/CODEX_WORKFLOW.md`](docs/CODEX_WORKFLOW.md)
 - Requirements templates: [`docs/requirements/README.md`](docs/requirements/README.md)
 - ADR templates: [`docs/adr/README.md`](docs/adr/README.md)
+- Template usage: [`docs/TEMPLATE_USAGE.md`](docs/TEMPLATE_USAGE.md)
 - Engineering standards: [`docs/ENGINEERING_STANDARDS.md`](docs/ENGINEERING_STANDARDS.md)
 - Delivery checklist: [`docs/DELIVERY_CHECKLIST.md`](docs/DELIVERY_CHECKLIST.md)
 - Security baseline: [`docs/SECURITY_BASELINE.md`](docs/SECURITY_BASELINE.md)
@@ -26,6 +27,12 @@ Initialized by Codex on 2026-05-11.
 - CI entrypoint: [`.github/workflows/ci.yml`](.github/workflows/ci.yml)
 
 ## Local Development
+
+Bootstrap a fresh checkout:
+
+```powershell
+.\scripts\bootstrap.ps1
+```
 
 Full local stack:
 
@@ -67,6 +74,12 @@ Install local pre-commit checks:
 
 ```powershell
 .\scripts\install-git-hooks.ps1
+```
+
+Create a new project from this template:
+
+```powershell
+.\scripts\new-project.ps1 -Name my-project
 ```
 
 Backend:
