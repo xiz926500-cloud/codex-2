@@ -46,6 +46,12 @@ npm.cmd run build
 python -m py_compile path\to\file.py
 ```
 
+Bootstrap a fresh checkout before starting substantial work on a new machine:
+
+```powershell
+.\scripts\bootstrap.ps1
+```
+
 For this repository:
 
 ```powershell
@@ -126,4 +132,10 @@ Use the delivery checklist before considering a task done:
 
 ```text
 docs/DELIVERY_CHECKLIST.md
+```
+
+Use the template guide when creating a new project from this scaffold:
+
+```text
+docs/TEMPLATE_USAGE.md
 ```

@@ -19,6 +19,7 @@ Use this checklist before a change is considered ready.
 - [ ] Frontend and backend contracts still match.
 - [ ] Validation messages match actual validation rules.
 - [ ] Environment variables are documented in `.env.example`.
+- [ ] New setup requirements are reflected in `scripts/bootstrap.ps1` or `docs/TEMPLATE_USAGE.md`.
 
 ## Verification
 

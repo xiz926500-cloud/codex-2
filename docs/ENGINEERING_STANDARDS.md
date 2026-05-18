@@ -16,6 +16,12 @@ Run the repository health check before opening a pull request:
 .\scripts\verify.ps1
 ```
 
+Use the bootstrap script on a fresh checkout or new machine:
+
+```powershell
+.\scripts\bootstrap.ps1
+```
+
 Run the lightweight secret scan before committing sensitive changes:
 
 ```powershell
@@ -59,6 +65,9 @@ those documents exist.
 
 Use `CONTEXT.md` for stable project language. Use `docs/adr/` for durable
 decisions that future contributors should not have to rediscover.
+
+Use `docs/TEMPLATE_USAGE.md` and `scripts/new-project.ps1` when turning this
+repository into a new project scaffold.
 
 ## Configuration
 
