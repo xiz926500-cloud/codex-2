@@ -38,6 +38,18 @@ For changes that touch Docker, database migrations, Redis, or runtime readiness,
 .\scripts\test-integration.ps1 -KeepRunning
 ```
 
+For changes that affect the user-facing browser workflow, run:
+
+```powershell
+.\scripts\test-e2e.ps1 -KeepRunning
+```
+
+Install repository-local pre-commit checks in each checkout:
+
+```powershell
+.\scripts\install-git-hooks.ps1
+```
+
 ## Configuration
 
 - Keep real secrets in `.env`.

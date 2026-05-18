@@ -7,3 +7,4 @@ python -m pip install -e "./backend[dev]"
 cd frontend
 npm ci
 npm run generate:api
+npx playwright install chromium

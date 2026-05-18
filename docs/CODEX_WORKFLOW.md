@@ -39,6 +39,7 @@ For this repository:
 cd frontend
 npm.cmd run lint
 npm.cmd run build
+npm.cmd run test:e2e
 
 cd ..\backend
 python -m ruff check .
@@ -64,7 +65,14 @@ Run the full Docker development stack:
 .\scripts\logs.ps1 -Follow
 .\scripts\migrate.ps1
 .\scripts\test-integration.ps1 -KeepRunning
+.\scripts\test-e2e.ps1 -KeepRunning
 .\scripts\stop.ps1
+```
+
+Install repository-local Git hooks once per checkout:
+
+```powershell
+.\scripts\install-git-hooks.ps1
 ```
 
 ## 4) Commit Rules
