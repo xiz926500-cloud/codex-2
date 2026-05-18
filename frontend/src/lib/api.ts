@@ -1,13 +1,8 @@
+import type { HealthResponse } from "./api-client";
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "";
 
-export interface HealthResponse {
-  status: string;
-  app: string;
-  version: string;
-  environment: string;
-  database_configured: boolean;
-  redis_configured: boolean;
-}
+export type { HealthResponse } from "./api-client";
 
 export async function getHealth(): Promise<HealthResponse> {
   const response = await fetch(`${API_BASE_URL}/api/health`);
