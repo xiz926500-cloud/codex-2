@@ -69,6 +69,12 @@ decisions that future contributors should not have to rediscover.
 Use `docs/TEMPLATE_USAGE.md` and `scripts/new-project.ps1` when turning this
 repository into a new project scaffold.
 
+Changes to the template generation path should run:
+
+```powershell
+.\scripts\test-template.ps1
+```
+
 ## Configuration
 
 - Keep real secrets in `.env`.

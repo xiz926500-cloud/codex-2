@@ -58,6 +58,12 @@ Preview the target without copying files:
 .\scripts\new-project.ps1 -Name my-project -DryRun
 ```
 
+Run the same smoke test used by CI:
+
+```powershell
+.\scripts\test-template.ps1
+```
+
 ## What Gets Copied
 
 `new-project.ps1` copies tracked files from Git, not every file in the working
