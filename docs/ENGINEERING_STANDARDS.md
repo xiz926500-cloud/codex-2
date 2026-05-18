@@ -50,6 +50,13 @@ Install repository-local pre-commit checks in each checkout:
 .\scripts\install-git-hooks.ps1
 ```
 
+## Requirements
+
+Use `docs/requirements/` for features with complex business behavior,
+permissions, state transitions, data changes, or rollout risk. PRs should link
+to the relevant PRD, business rules, acceptance cases, or risk checklist when
+those documents exist.
+
 ## Configuration
 
 - Keep real secrets in `.env`.

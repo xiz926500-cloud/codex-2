@@ -13,6 +13,15 @@ Do not touch: <algorithms/modules>
 Run verification commands and report what changed.
 ```
 
+For complex business behavior, create or copy the templates in
+`docs/requirements/` before implementation. At minimum, capture:
+
+- User or business outcome
+- Actors and permissions
+- In-scope and out-of-scope boundaries
+- Business rules, state transitions, and edge cases
+- Acceptance cases and rollback expectations
+
 ## 2) Branch Strategy
 
 Create a task branch:
