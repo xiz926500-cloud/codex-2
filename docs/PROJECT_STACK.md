@@ -27,6 +27,7 @@ npm.cmd run dev
 - Pydantic settings
 - SQLModel
 - Alembic
+- Live/readiness endpoints
 - Pytest
 - Ruff
 
@@ -45,25 +46,33 @@ python -m uvicorn app.main:app --reload
 
 - PostgreSQL
 - Redis
+- Alembic migration state is checked by API readiness
 
 Docker Compose is provided for local services and app containers:
 
 ```powershell
 .\scripts\dev.ps1
 .\scripts\migrate.ps1
+.\scripts\test-integration.ps1 -KeepRunning
 ```
 
 Docker is not required for CI checks, but it is the intended local integration path once Docker Desktop is installed.
 
+## Dev Container
+
+The `.devcontainer` setup installs Python, Node.js, Docker CLI access, backend dev dependencies, and frontend npm dependencies for a portable editor environment.
+
 ## API Contract
 
-The first contract is the health endpoint:
+The runtime contracts are:
 
 ```text
+GET /api/live
+GET /api/ready
 GET /api/health
 ```
 
-The frontend uses this endpoint to confirm that the API is reachable and that database/cache configuration is present.
+The frontend uses readiness to confirm that the API, database, Redis, and migration state are healthy.
 
 Refresh the local OpenAPI contract and generated TypeScript client after changing FastAPI routes or schemas:
 

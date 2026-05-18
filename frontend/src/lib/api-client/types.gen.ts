@@ -5,6 +5,20 @@ export type ClientOptions = {
 };
 
 /**
+ * DependencyCheck
+ */
+export type DependencyCheck = {
+    /**
+     * Status
+     */
+    status: 'ok' | 'error';
+    /**
+     * Detail
+     */
+    detail: string;
+};
+
+/**
  * HealthResponse
  */
 export type HealthResponse = {
@@ -33,6 +47,94 @@ export type HealthResponse = {
      */
     redis_configured: boolean;
 };
+
+/**
+ * LiveResponse
+ */
+export type LiveResponse = {
+    /**
+     * Status
+     */
+    status: 'ok';
+    /**
+     * App
+     */
+    app: string;
+    /**
+     * Version
+     */
+    version: string;
+    /**
+     * Environment
+     */
+    environment: string;
+};
+
+/**
+ * ReadyResponse
+ */
+export type ReadyResponse = {
+    /**
+     * Status
+     */
+    status: 'ok' | 'error';
+    /**
+     * App
+     */
+    app: string;
+    /**
+     * Version
+     */
+    version: string;
+    /**
+     * Environment
+     */
+    environment: string;
+    database: DependencyCheck;
+    redis: DependencyCheck;
+    migrations: DependencyCheck;
+};
+
+export type LiveApiLiveGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/live';
+};
+
+export type LiveApiLiveGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: LiveResponse;
+};
+
+export type LiveApiLiveGetResponse = LiveApiLiveGetResponses[keyof LiveApiLiveGetResponses];
+
+export type ReadyApiReadyGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/ready';
+};
+
+export type ReadyApiReadyGetErrors = {
+    /**
+     * Runtime dependencies unavailable
+     */
+    503: ReadyResponse;
+};
+
+export type ReadyApiReadyGetError = ReadyApiReadyGetErrors[keyof ReadyApiReadyGetErrors];
+
+export type ReadyApiReadyGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: ReadyResponse;
+};
+
+export type ReadyApiReadyGetResponse = ReadyApiReadyGetResponses[keyof ReadyApiReadyGetResponses];
 
 export type HealthApiHealthGetData = {
     body?: never;

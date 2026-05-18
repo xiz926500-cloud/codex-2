@@ -8,6 +8,7 @@ This repository uses a lightweight baseline that works before application code e
 - `Dependency Review`: checks dependency manifest changes in pull requests.
 - `Dependabot`: checks GitHub Actions updates weekly.
 - `CodeQL`: detects supported source languages and runs analysis when JavaScript, TypeScript, or Python files are present.
+- `Docker integration`: starts the Compose stack and verifies runtime readiness for API, database, Redis, and migrations.
 
 ## Local Commands
 
@@ -21,6 +22,12 @@ Run only the lightweight secret scan:
 
 ```powershell
 .\scripts\secret-scan.ps1
+```
+
+Run Docker-backed runtime checks:
+
+```powershell
+.\scripts\test-integration.ps1 -KeepRunning
 ```
 
 ## When A Real Stack Is Added
