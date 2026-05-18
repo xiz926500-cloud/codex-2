@@ -22,6 +22,18 @@ jobs:
         shell: powershell
         run: .\scripts\verify.ps1
 
+  template-smoke:
+    name: Template smoke
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Validate project template generation
+        shell: powershell
+        run: .\scripts\test-template.ps1
+
   frontend:
     name: Frontend
     runs-on: ubuntu-latest

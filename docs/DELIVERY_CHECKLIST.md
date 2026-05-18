@@ -25,6 +25,7 @@ Use this checklist before a change is considered ready.
 
 - [ ] `.\scripts\verify.ps1`
 - [ ] `.\scripts\secret-scan.ps1`
+- [ ] `.\scripts\test-template.ps1` for template generation changes
 - [ ] `cd frontend; npm.cmd run lint; npm.cmd run build`
 - [ ] `cd backend; python -m ruff check .; python -m pytest`
 - [ ] `.\scripts\test-integration.ps1 -KeepRunning` for Docker-backed API/database/cache changes
