@@ -5,6 +5,8 @@ Use this checklist before a change is considered ready.
 ## Scope
 
 - [ ] The task goal is clear.
+- [ ] Complex business rules have a PRD or requirements note in `docs/requirements/`.
+- [ ] Actors, permissions, edge cases, and acceptance cases are documented when relevant.
 - [ ] Only intended files were changed.
 - [ ] No unrelated cleanup or refactor was included.
 - [ ] Protected areas were left untouched unless explicitly approved.

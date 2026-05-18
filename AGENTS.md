@@ -8,6 +8,7 @@ Guidance for Codex and other coding agents working in this repository.
 - Prefer the smallest change that fully solves the task.
 - Follow existing project patterns before introducing new abstractions.
 - Keep unrelated refactors out of task branches.
+- Use `docs/requirements/` templates for complex business rules, permissions, state transitions, or rollout risk.
 - Use one branch per task, preferably `codex/<short-task-name>`.
 - Open a pull request for review instead of pushing directly to `main`.
 
