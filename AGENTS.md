@@ -5,6 +5,8 @@ Guidance for Codex and other coding agents working in this repository.
 ## Default Workflow
 
 - Inspect the repository structure before changing code.
+- Read `CONTEXT.md` before complex business, scope, or architecture work.
+- Check `docs/adr/` before revisiting durable technical or boundary decisions.
 - Prefer the smallest change that fully solves the task.
 - Follow existing project patterns before introducing new abstractions.
 - Keep unrelated refactors out of task branches.

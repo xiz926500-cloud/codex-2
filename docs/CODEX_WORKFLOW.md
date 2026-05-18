@@ -13,6 +13,9 @@ Do not touch: <algorithms/modules>
 Run verification commands and report what changed.
 ```
 
+Read `CONTEXT.md` when the task depends on project terminology, scope
+boundaries, protected logic, or delivery expectations.
+
 For complex business behavior, create or copy the templates in
 `docs/requirements/` before implementation. At minimum, capture:
 
@@ -21,6 +24,9 @@ For complex business behavior, create or copy the templates in
 - In-scope and out-of-scope boundaries
 - Business rules, state transitions, and edge cases
 - Acceptance cases and rollback expectations
+
+Use `docs/adr/` when a decision is hard to reverse, surprising without context,
+and based on a real trade-off.
 
 ## 2) Branch Strategy
 
