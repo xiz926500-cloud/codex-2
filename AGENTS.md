@@ -52,11 +52,11 @@ python -m py_compile path\to\file.py
 
 ## Current Stack
 
-- Frontend lives in `frontend` and uses React, TypeScript, Vite, ESLint, and generated OpenAPI types.
+- Frontend lives in `frontend` and uses React, TypeScript, Vite, ESLint, Playwright, and generated OpenAPI types.
 - Backend lives in `backend` and uses FastAPI, SQLModel, Alembic, live/readiness checks, Pytest, and Ruff.
 - Local integration services are defined in `docker-compose.yml` for PostgreSQL and Redis.
 - Dev Container configuration lives in `.devcontainer`.
-- CI should run repository verification, frontend lint/build, backend lint/test, dependency review, and CodeQL when supported source files exist.
+- CI should run repository verification, frontend lint/build, backend lint/test, Docker integration, Playwright E2E, container image builds, dependency review, and CodeQL when supported source files exist.
 
 ## Safety
 

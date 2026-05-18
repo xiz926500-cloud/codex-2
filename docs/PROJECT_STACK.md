@@ -9,6 +9,7 @@ This repository is set up as a practical full-stack starter.
 - Vite
 - ESLint
 - Generated API types from FastAPI OpenAPI
+- Playwright E2E tests
 
 Local commands:
 
@@ -18,6 +19,7 @@ npm.cmd install
 npm.cmd run generate:api
 npm.cmd run lint
 npm.cmd run build
+npm.cmd run test:e2e
 npm.cmd run dev
 ```
 
@@ -54,6 +56,7 @@ Docker Compose is provided for local services and app containers:
 .\scripts\dev.ps1
 .\scripts\migrate.ps1
 .\scripts\test-integration.ps1 -KeepRunning
+.\scripts\test-e2e.ps1 -KeepRunning
 ```
 
 Docker is not required for CI checks, but it is the intended local integration path once Docker Desktop is installed.
@@ -61,6 +64,10 @@ Docker is not required for CI checks, but it is the intended local integration p
 ## Dev Container
 
 The `.devcontainer` setup installs Python, Node.js, Docker CLI access, backend dev dependencies, and frontend npm dependencies for a portable editor environment.
+
+## Delivery Images
+
+Container images are built for the API and web app in pull requests, then published to GitHub Container Registry from `main`.
 
 ## API Contract
 

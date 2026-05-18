@@ -20,6 +20,8 @@ build/
 coverage/
 .vite/
 .next/
+playwright-report/
+test-results/
 
 # Python
 __pycache__/

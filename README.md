@@ -8,7 +8,7 @@ Initialized by Codex on 2026-05-11.
 - Backend: FastAPI, SQLModel, Alembic, Pytest, Ruff
 - Data services: PostgreSQL and Redis
 - Dev environment: Docker Compose and Dev Container
-- Delivery: GitHub Actions, branch protection, Dependabot, CodeQL, Dependency Review
+- Delivery: GitHub Actions, branch protection, Dependabot, CodeQL, Dependency Review, GHCR images
 
 ## Codex Workflow
 
@@ -50,6 +50,22 @@ Run Docker-backed integration checks:
 .\scripts\test-integration.ps1 -KeepRunning
 ```
 
+Run browser E2E checks:
+
+```powershell
+cd frontend
+npm.cmd install
+npx.cmd playwright install chromium
+cd ..
+.\scripts\test-e2e.ps1 -KeepRunning
+```
+
+Install local pre-commit checks:
+
+```powershell
+.\scripts\install-git-hooks.ps1
+```
+
 Backend:
 
 ```powershell
@@ -75,3 +91,10 @@ Refresh the committed OpenAPI contract and generated TypeScript client:
 ```
 
 Dev Container users can reopen the repository in a container and use the same scripts from the workspace root.
+
+Container images are built on pull requests and published from `main` to GitHub Container Registry:
+
+```text
+ghcr.io/xiz926500-cloud/codex-2-api
+ghcr.io/xiz926500-cloud/codex-2-web
+```

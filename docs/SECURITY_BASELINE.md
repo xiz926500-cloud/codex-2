@@ -9,6 +9,8 @@ This repository uses a lightweight baseline that works before application code e
 - `Dependabot`: checks GitHub Actions updates weekly.
 - `CodeQL`: detects supported source languages and runs analysis when JavaScript, TypeScript, or Python files are present.
 - `Docker integration`: starts the Compose stack and verifies runtime readiness for API, database, Redis, and migrations.
+- `End-to-end`: starts the Compose stack and validates the browser readiness workflow with Playwright.
+- `Container Publish`: builds API and web images on pull requests and publishes them to GHCR from `main`.
 
 ## Local Commands
 
@@ -28,6 +30,12 @@ Run Docker-backed runtime checks:
 
 ```powershell
 .\scripts\test-integration.ps1 -KeepRunning
+```
+
+Run browser runtime checks:
+
+```powershell
+.\scripts\test-e2e.ps1 -KeepRunning
 ```
 
 ## When A Real Stack Is Added

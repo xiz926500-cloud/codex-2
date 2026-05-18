@@ -23,6 +23,7 @@ Use this checklist before a change is considered ready.
 - [ ] `cd frontend; npm.cmd run lint; npm.cmd run build`
 - [ ] `cd backend; python -m ruff check .; python -m pytest`
 - [ ] `.\scripts\test-integration.ps1 -KeepRunning` for Docker-backed API/database/cache changes
+- [ ] `.\scripts\test-e2e.ps1 -KeepRunning` for frontend/runtime workflow changes
 - [ ] Manual smoke test, if needed
 
 ## PR
