@@ -58,7 +58,7 @@ try {
         Invoke-Docker @("compose", "exec", "-T", "api", "python", "-m", "alembic", "upgrade", "head")
     }
 
-    Wait-Http -Name "API" -Uri "http://127.0.0.1:8000/api/health" -TimeoutSeconds $TimeoutSeconds
+    Wait-Http -Name "API readiness" -Uri "http://127.0.0.1:8000/api/ready" -TimeoutSeconds $TimeoutSeconds
     Wait-Http -Name "Frontend" -Uri "http://127.0.0.1:5173/" -TimeoutSeconds $TimeoutSeconds
     Invoke-Docker @("compose", "ps")
 }

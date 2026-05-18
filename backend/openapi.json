@@ -5,6 +5,52 @@
     "version": "0.1.0"
   },
   "paths": {
+    "/api/live": {
+      "get": {
+        "summary": "Live",
+        "operationId": "live_api_live_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LiveResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ready": {
+      "get": {
+        "summary": "Ready",
+        "operationId": "ready_api_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadyResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Runtime dependencies unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/health": {
       "get": {
         "summary": "Health",
@@ -26,6 +72,28 @@
   },
   "components": {
     "schemas": {
+      "DependencyCheck": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "error"
+            ],
+            "title": "Status"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "detail"
+        ],
+        "title": "DependencyCheck"
+      },
       "HealthResponse": {
         "properties": {
           "status": {
@@ -63,6 +131,79 @@
           "redis_configured"
         ],
         "title": "HealthResponse"
+      },
+      "LiveResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok",
+            "title": "Status"
+          },
+          "app": {
+            "type": "string",
+            "title": "App"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "environment": {
+            "type": "string",
+            "title": "Environment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "app",
+          "version",
+          "environment"
+        ],
+        "title": "LiveResponse"
+      },
+      "ReadyResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "error"
+            ],
+            "title": "Status"
+          },
+          "app": {
+            "type": "string",
+            "title": "App"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "environment": {
+            "type": "string",
+            "title": "Environment"
+          },
+          "database": {
+            "$ref": "#/components/schemas/DependencyCheck"
+          },
+          "redis": {
+            "$ref": "#/components/schemas/DependencyCheck"
+          },
+          "migrations": {
+            "$ref": "#/components/schemas/DependencyCheck"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "app",
+          "version",
+          "environment",
+          "database",
+          "redis",
+          "migrations"
+        ],
+        "title": "ReadyResponse"
       }
     }
   }

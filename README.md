@@ -7,6 +7,7 @@ Initialized by Codex on 2026-05-11.
 - Frontend: React, TypeScript, Vite
 - Backend: FastAPI, SQLModel, Alembic, Pytest, Ruff
 - Data services: PostgreSQL and Redis
+- Dev environment: Docker Compose and Dev Container
 - Delivery: GitHub Actions, branch protection, Dependabot, CodeQL, Dependency Review
 
 ## Codex Workflow
@@ -43,6 +44,12 @@ Run migrations manually when needed:
 .\scripts\migrate.ps1 -Local
 ```
 
+Run Docker-backed integration checks:
+
+```powershell
+.\scripts\test-integration.ps1 -KeepRunning
+```
+
 Backend:
 
 ```powershell
@@ -66,3 +73,5 @@ Refresh the committed OpenAPI contract and generated TypeScript client:
 ```powershell
 .\scripts\generate-api.ps1
 ```
+
+Dev Container users can reopen the repository in a container and use the same scripts from the workspace root.

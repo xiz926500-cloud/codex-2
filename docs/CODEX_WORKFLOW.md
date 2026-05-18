@@ -63,6 +63,7 @@ Run the full Docker development stack:
 .\scripts\dev.ps1
 .\scripts\logs.ps1 -Follow
 .\scripts\migrate.ps1
+.\scripts\test-integration.ps1 -KeepRunning
 .\scripts\stop.ps1
 ```
 

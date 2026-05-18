@@ -32,6 +32,12 @@ python -m pytest
 python -m py_compile path\to\file.py
 ```
 
+For changes that touch Docker, database migrations, Redis, or runtime readiness, run:
+
+```powershell
+.\scripts\test-integration.ps1 -KeepRunning
+```
+
 ## Configuration
 
 - Keep real secrets in `.env`.
@@ -55,5 +61,6 @@ Review for behavior first:
 - User-visible regressions
 - Security or data handling risks
 - Broken contracts between frontend, backend, and database
+- Broken readiness, migration, or container startup behavior
 - Missing tests for risky changes
 - Unrelated refactors mixed into the task

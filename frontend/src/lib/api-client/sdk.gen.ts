@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { HealthApiHealthGetData, HealthApiHealthGetResponses } from './types.gen';
+import type { HealthApiHealthGetData, HealthApiHealthGetResponses, LiveApiLiveGetData, LiveApiLiveGetResponses, ReadyApiReadyGetData, ReadyApiReadyGetErrors, ReadyApiReadyGetResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -17,6 +17,16 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
      */
     meta?: Record<string, unknown>;
 };
+
+/**
+ * Live
+ */
+export const liveApiLiveGet = <ThrowOnError extends boolean = false>(options?: Options<LiveApiLiveGetData, ThrowOnError>) => (options?.client ?? client).get<LiveApiLiveGetResponses, unknown, ThrowOnError>({ url: '/api/live', ...options });
+
+/**
+ * Ready
+ */
+export const readyApiReadyGet = <ThrowOnError extends boolean = false>(options?: Options<ReadyApiReadyGetData, ThrowOnError>) => (options?.client ?? client).get<ReadyApiReadyGetResponses, ReadyApiReadyGetErrors, ThrowOnError>({ url: '/api/ready', ...options });
 
 /**
  * Health
