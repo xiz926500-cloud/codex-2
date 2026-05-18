@@ -5,7 +5,7 @@ Initialized by Codex on 2026-05-11.
 ## Stack
 
 - Frontend: React, TypeScript, Vite
-- Backend: FastAPI, Pytest, Ruff
+- Backend: FastAPI, SQLModel, Alembic, Pytest, Ruff
 - Data services: PostgreSQL and Redis
 - Delivery: GitHub Actions, branch protection, Dependabot, CodeQL, Dependency Review
 
@@ -23,12 +23,33 @@ Initialized by Codex on 2026-05-11.
 
 ## Local Development
 
+Full local stack:
+
+```powershell
+.\scripts\dev.ps1
+```
+
+View logs or stop the stack:
+
+```powershell
+.\scripts\logs.ps1 -Follow
+.\scripts\stop.ps1
+```
+
+Run migrations manually when needed:
+
+```powershell
+.\scripts\migrate.ps1
+.\scripts\migrate.ps1 -Local
+```
+
 Backend:
 
 ```powershell
 cd backend
 python -m pip install -e ".[dev]"
 python -m uvicorn app.main:app --reload
+python -m alembic upgrade head
 ```
 
 Frontend:
@@ -36,11 +57,12 @@ Frontend:
 ```powershell
 cd frontend
 npm.cmd install
+npm.cmd run generate:api
 npm.cmd run dev
 ```
 
-Full local stack after Docker Desktop is installed:
+Refresh the committed OpenAPI contract and generated TypeScript client:
 
 ```powershell
-docker compose up --build
+.\scripts\generate-api.ps1
 ```

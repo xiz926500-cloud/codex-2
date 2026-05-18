@@ -34,6 +34,8 @@ python -m py_compile path\to\file.py
 For this repository:
 
 ```powershell
+.\scripts\generate-api.ps1
+
 cd frontend
 npm.cmd run lint
 npm.cmd run build
@@ -53,6 +55,15 @@ Run CI-equivalent repository verification:
 
 ```powershell
 .\scripts\verify.ps1
+```
+
+Run the full Docker development stack:
+
+```powershell
+.\scripts\dev.ps1
+.\scripts\logs.ps1 -Follow
+.\scripts\migrate.ps1
+.\scripts\stop.ps1
 ```
 
 ## 4) Commit Rules
