@@ -57,6 +57,9 @@ permissions, state transitions, data changes, or rollout risk. PRs should link
 to the relevant PRD, business rules, acceptance cases, or risk checklist when
 those documents exist.
 
+Use `CONTEXT.md` for stable project language. Use `docs/adr/` for durable
+decisions that future contributors should not have to rediscover.
+
 ## Configuration
 
 - Keep real secrets in `.env`.

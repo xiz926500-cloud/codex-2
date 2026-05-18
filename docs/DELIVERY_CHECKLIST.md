@@ -5,6 +5,8 @@ Use this checklist before a change is considered ready.
 ## Scope
 
 - [ ] The task goal is clear.
+- [ ] `CONTEXT.md` was checked when project terminology or scope boundaries mattered.
+- [ ] Existing ADRs were checked before changing durable architecture or ownership decisions.
 - [ ] Complex business rules have a PRD or requirements note in `docs/requirements/`.
 - [ ] Actors, permissions, edge cases, and acceptance cases are documented when relevant.
 - [ ] Only intended files were changed.
@@ -31,6 +33,7 @@ Use this checklist before a change is considered ready.
 ## PR
 
 - [ ] PR template is filled in.
+- [ ] New ADR is included when a hard-to-reverse trade-off was made.
 - [ ] CI is green.
 - [ ] Risk and rollback notes are included.
 - [ ] Linear or Notion status is updated, if used.

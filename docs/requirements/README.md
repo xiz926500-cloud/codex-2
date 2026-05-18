@@ -4,6 +4,9 @@ Use these templates when a task has business rules, roles, state changes,
 money, permissions, data retention, or acceptance risk. They are meant to make
 the problem crisp before implementation starts.
 
+Read the root [`CONTEXT.md`](../../CONTEXT.md) first when terminology, scope
+boundaries, or protected logic matter.
+
 ## Template Map
 
 - [PRD template](prd-template.md): define the feature, users, scope, metrics,

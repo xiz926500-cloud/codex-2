@@ -13,8 +13,10 @@ Initialized by Codex on 2026-05-11.
 ## Codex Workflow
 
 - Project stack: [`docs/PROJECT_STACK.md`](docs/PROJECT_STACK.md)
+- Project context: [`CONTEXT.md`](CONTEXT.md)
 - Workflow guide: [`docs/CODEX_WORKFLOW.md`](docs/CODEX_WORKFLOW.md)
 - Requirements templates: [`docs/requirements/README.md`](docs/requirements/README.md)
+- ADR templates: [`docs/adr/README.md`](docs/adr/README.md)
 - Engineering standards: [`docs/ENGINEERING_STANDARDS.md`](docs/ENGINEERING_STANDARDS.md)
 - Delivery checklist: [`docs/DELIVERY_CHECKLIST.md`](docs/DELIVERY_CHECKLIST.md)
 - Security baseline: [`docs/SECURITY_BASELINE.md`](docs/SECURITY_BASELINE.md)
