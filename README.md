@@ -18,6 +18,7 @@ Initialized by Codex on 2026-05-11.
 - Requirements templates: [`docs/requirements/README.md`](docs/requirements/README.md)
 - ADR templates: [`docs/adr/README.md`](docs/adr/README.md)
 - Template usage: [`docs/TEMPLATE_USAGE.md`](docs/TEMPLATE_USAGE.md)
+- Codex environment restore: [`docs/CODEX_ENVIRONMENT_RESTORE.md`](docs/CODEX_ENVIRONMENT_RESTORE.md)
 - Engineering standards: [`docs/ENGINEERING_STANDARDS.md`](docs/ENGINEERING_STANDARDS.md)
 - Delivery checklist: [`docs/DELIVERY_CHECKLIST.md`](docs/DELIVERY_CHECKLIST.md)
 - Security baseline: [`docs/SECURITY_BASELINE.md`](docs/SECURITY_BASELINE.md)
@@ -80,6 +81,12 @@ Create a new project from this template:
 
 ```powershell
 .\scripts\new-project.ps1 -Name my-project
+```
+
+Restore local Codex skills on another computer:
+
+```powershell
+.\scripts\restore-codex-skills.ps1
 ```
 
 Backend:
