@@ -111,6 +111,7 @@ Assert-File "scripts\stop.ps1"
 Assert-File "scripts\test-e2e.ps1"
 Assert-File "scripts\test-integration.ps1"
 Assert-File "scripts\test-template.ps1"
+Assert-File "scripts\test-workflow-policy.ps1"
 Assert-File "scripts\verify.ps1"
 Assert-Directory ".devcontainer"
 Assert-Directory ".githooks"
@@ -130,6 +131,9 @@ Assert-Directory "scripts"
 
 Write-Host "Checking README links..."
 Assert-ReadmeLinks
+
+Write-Host "Checking workflow policy..."
+& ".\scripts\test-workflow-policy.ps1"
 
 Write-Host "Checking git whitespace rules..."
 git diff --check
