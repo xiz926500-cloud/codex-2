@@ -34,6 +34,16 @@ function Assert-True {
     }
 }
 
+function Set-Utf8NoBomContent {
+    param(
+        [string]$Path,
+        [string]$Value
+    )
+
+    $encoding = [System.Text.UTF8Encoding]::new($false)
+    [System.IO.File]::WriteAllText($Path, $Value, $encoding)
+}
+
 $repoRoot = Split-Path -Parent $PSScriptRoot
 $agentsPath = Join-Path $repoRoot "AGENTS.md"
 $workflowPath = Join-Path $repoRoot "docs\CODEX_WORKFLOW.md"
@@ -46,6 +56,7 @@ $agents = Get-Content -Raw -LiteralPath $agentsPath
 $workflow = Get-Content -Raw -LiteralPath $workflowPath
 $projectConfig = Get-Content -Raw -LiteralPath $projectConfigPath
 $templateAgents = Get-Content -Raw -LiteralPath $templateAgentsPath
+$applyScript = Get-Content -Raw -LiteralPath $applyScriptPath
 $verifier = Get-Content -Raw -LiteralPath $verifierPath
 
 Assert-Match $agents 'Normative repository guidance' "AGENTS.md must identify itself as the normative repository policy."
@@ -72,6 +83,7 @@ Assert-Match $projectConfig '(?ms)^\[agents\].*?^max_depth\s*=\s*1\s*$' "Sol-onl
 Assert-Match $templateAgents 'root/main model is always Sol' "Global template must assign ownership to Sol."
 Assert-Match $templateAgents 'Do not spawn subagents' "Global template must forbid delegation."
 Assert-NotMatch $templateAgents 'Terra|Luna|TASK_NOT_READY' "Global template still contains multi-model routing."
+Assert-NotMatch $applyScript '-Encoding\s+utf8NoBOM' "Migration script must remain compatible with Windows PowerShell 5.1."
 Assert-Match $verifier 'debug models --bundled' "Verifier must use the reproducible bundled model catalog."
 Assert-NotMatch $verifier '\$catalogRaw\s*\|\s*ConvertFrom-Json' "Verifier must not deserialize the full model catalog."
 
@@ -100,10 +112,10 @@ max_threads = 4
 max_depth = 2
 interrupt_message = true
 "@
-    Set-Content -LiteralPath (Join-Path $fakeHome "config.toml") -Value $fakeConfig -Encoding utf8NoBOM
-    Set-Content -LiteralPath (Join-Path $fakeHome "AGENTS.md") -Value "old multi-agent guidance" -Encoding utf8NoBOM
-    Set-Content -LiteralPath (Join-Path $fakeHome "agents\sol.toml") -Value 'name = "sol"' -Encoding utf8NoBOM
-    Set-Content -LiteralPath (Join-Path $fakeHome "agents\luna.toml") -Value 'name = "luna"' -Encoding utf8NoBOM
+    Set-Utf8NoBomContent -Path (Join-Path $fakeHome "config.toml") -Value $fakeConfig
+    Set-Utf8NoBomContent -Path (Join-Path $fakeHome "AGENTS.md") -Value "old multi-agent guidance"
+    Set-Utf8NoBomContent -Path (Join-Path $fakeHome "agents\sol.toml") -Value 'name = "sol"'
+    Set-Utf8NoBomContent -Path (Join-Path $fakeHome "agents\luna.toml") -Value 'name = "luna"'
 
     & $applyScriptPath -CodexHome $fakeHome -BackupRoot $backupRoot -SkipCodexRuntimeChecks | Out-Null
     & $verifierPath -CodexHome $fakeHome -SkipCodexRuntimeChecks | Out-Null

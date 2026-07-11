@@ -60,7 +60,8 @@ $config = Set-RequiredTomlScalar -Text $config -Key "max_threads" -TomlValue "1"
 $config = Set-RequiredTomlScalar -Text $config -Key "max_depth" -TomlValue "1"
 
 $tempConfigPath = "$configPath.sol-only.tmp"
-Set-Content -LiteralPath $tempConfigPath -Value $config -Encoding utf8NoBOM
+$utf8NoBom = [System.Text.UTF8Encoding]::new($false)
+[System.IO.File]::WriteAllText($tempConfigPath, $config, $utf8NoBom)
 Move-Item -LiteralPath $tempConfigPath -Destination $configPath -Force
 Copy-Item -LiteralPath $agentsTemplatePath -Destination $globalAgentsPath -Force
 New-Item -ItemType Directory -Path $agentsPath -Force | Out-Null
