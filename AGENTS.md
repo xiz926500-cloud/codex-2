@@ -1,7 +1,7 @@
 # AGENTS.md
 
 Normative repository guidance for Codex and other coding agents. Global
-Terra/Sol/Luna routing remains defined in `~/.codex/AGENTS.md`.
+single-Sol behavior remains defined in `~/.codex/AGENTS.md`.
 `docs/CODEX_WORKFLOW.md` explains this policy but does not duplicate or override
 it.
 
@@ -9,6 +9,8 @@ it.
 
 - Operate with high autonomy: when the user states a goal, proceed through
   inspection, implementation, and verification without repeated confirmation.
+- Run in Sol-only mode. Sol owns requirements, architecture, implementation,
+  review, verification, and delivery directly; do not delegate to subagents.
 - Resolve uncertainty from the repository, runtime, and available documentation
   before asking the user. Stop only for missing business authority, substantial
   destructive personal-data changes, real secret exposure, policy boundaries,

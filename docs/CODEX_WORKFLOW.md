@@ -1,8 +1,8 @@
 # Codex Workflow Runbook (Windows)
 
 This document explains the normal delivery path. `AGENTS.md` is the normative
-repository policy, and `~/.codex/AGENTS.md` is the normative Terra/Sol/Luna
-routing policy. When wording differs, the applicable `AGENTS.md` wins.
+repository policy, and `~/.codex/AGENTS.md` is the normative global Sol-only
+policy. When wording differs, the applicable `AGENTS.md` wins.
 
 ## Fast Path
 
@@ -11,23 +11,34 @@ routing policy. When wording differs, the applicable `AGENTS.md` wins.
 2. Read `CONTEXT.md`, `docs/requirements/`, or `docs/adr/` only when the task
    depends on those decisions.
 3. Check whether an external context tool is ready before calling it.
-4. Let Terra handle clear work directly. Use Sol only for a durable architecture
-   decision and Luna only for separable bounded execution.
+4. Let Sol handle requirements, architecture, implementation, review, and
+   verification directly. Do not delegate to subagents.
 5. Implement the smallest complete change.
 6. Run focused validation, affected saved tests, and risk-appropriate regression
    checks.
 7. Review the diff and deliver a test audit with risks and rollback notes.
 
-## Agent Timing
+## Sol-Only Execution
 
-- Normal Sol review: reasoning `high`, up to 90 seconds.
-- If Sol does not return: request a concise provisional result, wait 30 seconds,
-  close the agent, and let Terra continue from verified evidence.
-- Luna may discover exact files and tests inside its supplied boundary. It stops
-  with `TASK_NOT_READY` only when behavior, contracts, authority, protected
-  scope, or acceptance criteria are unresolved.
-- Keep one write-capable agent per worktree. Parallelize read-only exploration or
-  use disjoint worktrees.
+- Use `gpt-5.6-sol` with reasoning `high` as the default balance of depth and
+  latency.
+- Keep `agents.max_depth = 1`, the minimum accepted by Codex, disable custom
+  agent TOML files, and enforce no delegation through the Sol-only policy.
+- Sol performs discovery and execution in one continuous context, then reviews
+  its own diff and reruns the relevant verification before delivery.
+- Raise reasoning effort only for exceptional high-impact work where the extra
+  latency is justified.
+
+## Apply Sol-Only Globally
+
+Run the audited migration from a normal PowerShell terminal:
+
+```powershell
+pwsh -NoProfile -File .\scripts\apply-sol-only-codex.ps1
+```
+
+The migration backs up `~/.codex`, disables active custom-agent TOML files,
+installs the Sol-only guidance and verifier, then requires a Codex restart.
 
 ## Context Tool Gate
 
